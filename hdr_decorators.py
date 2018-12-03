@@ -1,7 +1,8 @@
-import tada.exceptions as tex
+#!import tada.exceptions as tex
 
 all_in_keywords = set()
 all_out_keywords = set()
+
 
 class inkws(object):
     def __init__(self,kwlist):
@@ -15,11 +16,13 @@ class inkws(object):
             origkws = set(orig.keys())
             if not self.inkwset.issubset(origkws):
                 missing = self.inkwset.difference(origkws)
+                #!print('DBG: origkws={}, missing={}'.format(origkws,missing))
                 msg = ('Some keywords required per @inkws [{}] are missing'
-                       ' in [{}]. SOLUTIONS: Fix FITS, change HDR FUNC @inkws')
+                       ' in orig keys [{}].'
+                       ' SOLUTIONS: Fix FITS, change HDR FUNC @inkws')
                 #!return(msg.format(', '.join(missing), ', '.join(origkws)))
-                raise tex.BadHdrFunc(msg.format(', '.join(missing),
-                                                ', '.join(origkws)))
+                raise Exception(msg.format(', '.join(missing),
+                                           ', '.join(origkws)))
             else:
                 return f(orig, **kwargs)
         return wrapped_f
@@ -40,8 +43,8 @@ class outkws(object):
                        'are missing in hdrfunc return value.'
                        ' SOLUTIONS: Fix FITS, or change HDR FUNC @outkws')
                 #!return(msg.format(', '.join(missing), self.outkwset))
-                raise tex.BadHdrFunc(msg.format(', '.join(missing),
-                                                ', '.join(self.outkwset)))
+                raise Exception(msg.format(', '.join(missing),
+                                           ', '.join(self.outkwset)))
             else:
                 return new
         return wrapped_f
