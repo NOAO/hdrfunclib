@@ -19,6 +19,11 @@ def flat_hdudict(hdudict_list):
 class Personality():
     
     def __init__(self, persName):
+        # list of name/dict pairs should be same as dict formed from them
+        # (unless a key is being overwritten)
+        if len(dict(personalities)) != len(personalities)):
+            raise Exception('Duplicate personality name!')
+        
         self.persdict = dict()    # like CONTENT of old Personality File
         self.persName = '<none>'  # like NAME    of old Personality File
         self.update0dict = dict() # k/v to update on HDU-0
