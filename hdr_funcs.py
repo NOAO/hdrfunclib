@@ -1,6 +1,17 @@
-#! /usr/bin/env python3
-"""
-Every hdrfunc must have same
+"""\
+FITS header calculation functions (hdrfunc).
+
+Each function is passed a dictionary containing only the fields it
+needs (per the @inkws decorator). It then RETURNS a dictionary of
+field name/values to be updated.  
+
+NB: The program that calls these functions must do some extra
+bookkeeping to scrape the input keywords from multiple HDUs and to
+update the values into the first HDU that contains the keyword (or
+HDU-0 if no HDU contains it)
+
+All functions have the same signature.
+
 """
 
 # Grouped by OUTPUT Keyword

@@ -205,7 +205,6 @@ personalities = [
                                'PROCTYPE': 'raw',
                                'PRODTYPE': 'image'},
                    'params': {}}),
-    ('wiyn-whirc', {'calchdr': [], 'params': 'REMOVE THIS'}),
     ('wiyn-whirc', {'calchdr': [hf.IMAGTYPEtoOBSTYPE,
                                hf.DTCALDATfromDATEOBStus],
                    'options': {'DTINSTRU': 'whirc',
